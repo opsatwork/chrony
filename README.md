@@ -1,7 +1,7 @@
 Chrony for Ansible
 ==================
 
-A chrony for deploying and configuring [Chrony](https://chrony.tuxfamily.org/) and extensions on Enterprise Linux hosts using [Ansible](http://www.ansibleworks.com/).
+A role for deploying and configuring [Chrony](https://chrony.tuxfamily.org/) and extensions on Enterprise Linux hosts using [Ansible](http://www.ansibleworks.com/).
 
 It can additionally be used as a playbook for quickly provisioning hosts.
 
