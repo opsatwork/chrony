@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Patrick Ernst
+  description: Installs and configures chrony
+  company: OpsAtWork
+  license: BSD
+  min_ansible_version: 2.1
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - system
+    - ntp
+    - chrony
+dependencies: []

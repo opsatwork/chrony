@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+{% for server in chrony_config_server %}
+server {{ server }} iburst
+{% endfor %}
+{% for pool in chrony_config_pool %}
+pool {{ pool }} iburst
+{% endfor %}
+
+stratumweight {{ chrony_config_stratumweight }}
+driftfile {{ chrony_config_driftfile }}
+rtcsync
+makestep 10 3
+{% if chrony_config_allow %}
+{% for client in chrony_config_allow %}
+allow {{ client }}
+{% endfor %}
+{% endif %}
+bindcmdaddress 127.0.0.1
+bindcmdaddress ::1
+keyfile /etc/chrony.keys
+commandkey 1
+generatecommandkey
+noclientlog
+logchange 0.5
+logdir {{ chrony_config_logdir }}
