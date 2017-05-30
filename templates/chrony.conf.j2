@@ -1,12 +1,16 @@
 # {{ ansible_managed }}
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
+{% if chrony_config_server is defined %}
 {% for server in chrony_config_server %}
 server {{ server }} iburst
 {% endfor %}
+{% endif %}
+{% if chrony_config_pool is defined %}
 {% for pool in chrony_config_pool %}
 pool {{ pool }} iburst
 {% endfor %}
+{% endif %}
 
 stratumweight {{ chrony_config_stratumweight }}
 driftfile {{ chrony_config_driftfile }}
