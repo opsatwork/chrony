@@ -36,7 +36,7 @@ Usage
 
 Clone this repo into your roles directory:
 
-    $ git clone https://github.com/opsatwork/chrony.git roles/chrony
+    $ git clone https://github.com/opsatwork/chrony.git roles/opsatwork.chrony
 
 And add it to your play's roles:
 
