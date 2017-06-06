@@ -2,12 +2,25 @@
 # tasks file for opsatwork.chrony
 
 # Variable setup.
-- name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+include_vars: "main.yml"
 
-# Setup/install tasks.
-- include: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Ensure chrony packages are installed (RedHat).
+    yum:
+    name: "{{ item }}"
+    state: installed
+    with_items: "{{ chrony_packages }}"
 
-# Configure.
-- include: configure.yml
+- name: Copy configuration
+    template:
+    src: chrony.conf.j2
+    dest: "{{ chrony_config_location }}"
+    owner: root
+    group: root
+    mode: 0664
+    notify: restart chrony
+
+- name: Ensure chrony services is started and enabled
+    service:
+    name: "{{ chrony_service_name }}"
+    state: started
+    enabled: yes
